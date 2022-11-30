@@ -1,16 +1,18 @@
 package com.fjhdream.truckbilling.controller.entity;
 
-import jakarta.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data
 public class UserRequest {
 
-    @NotNull
+    @NotBlank(message = "User ID can not be empty!")
     private String id;
 
-    @NotNull
+    @NotBlank(message = "User name can not be empty!")
     private String name;
 
+    @JsonAlias("avatar_url")
     private String avatarUrl;
 }

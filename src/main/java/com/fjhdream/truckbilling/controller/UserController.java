@@ -1,12 +1,15 @@
 package com.fjhdream.truckbilling.controller;
 
 import com.fjhdream.truckbilling.controller.entity.UserRequest;
-import com.fjhdream.truckbilling.controller.entity.UserResponse;
 import com.fjhdream.truckbilling.repository.UserRepository;
 import com.fjhdream.truckbilling.repository.entity.User;
+import com.fjhdream.truckbilling.repository.mapper.UserMapper;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author carota
@@ -23,11 +26,8 @@ public class UserController {
 
     @PostMapping("/user")
     @ResponseStatus(HttpStatus.CREATED)
-    void userCreate(@RequestBody @Valid UserRequest userRequest) {
-        User user = new User();
-        user.setId(userRequest.getId());
-        user.setUserName(userRequest.getName());
-        user.setAvatarUrl(user.getAvatarUrl());
+    void userCreate(@Valid @RequestBody UserRequest userRequest) {
+        User user = UserMapper.INSTANCE.userRequestToUserEntity(userRequest);
         userRepository.save(user);
     }
 }
