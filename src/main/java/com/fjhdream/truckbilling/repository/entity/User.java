@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.List;
+
 @Entity
 @Table(name = "\"user\"")
 public class User {
@@ -20,6 +22,10 @@ public class User {
 
     @Column(name = "avatar_url", length = Integer.MAX_VALUE)
     private String avatarUrl;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private List<Role> roles;
 
     public String getId() {
         return id;
@@ -45,4 +51,11 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
 }

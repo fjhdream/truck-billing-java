@@ -1,5 +1,6 @@
 package com.fjhdream.truckbilling.repository.entity;
 
+import com.fjhdream.truckbilling.repository.enums.RoleType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -8,6 +9,7 @@ import java.util.UUID;
 @Entity
 @Table(name = "role")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false)
@@ -17,6 +19,18 @@ public class Role {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private RoleType roleType;
+
+    public RoleType getRoleType() {
+        return roleType;
+    }
+
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
+    }
 
     public UUID getId() {
         return id;
@@ -34,10 +48,5 @@ public class Role {
         this.user = user;
     }
 
-/*
-    TODO [JPA Buddy] create field to map the 'type' column
-     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "type", columnDefinition = "role_type not null")
-    private Object type;
-*/
+
 }

@@ -1,6 +1,7 @@
 package com.fjhdream.truckbilling.controller;
 
 import com.fjhdream.truckbilling.controller.entity.UserRequest;
+import com.fjhdream.truckbilling.controller.entity.UserResponse;
 import com.fjhdream.truckbilling.controller.entity.UserWxRequest;
 import com.fjhdream.truckbilling.controller.entity.UserWxResponse;
 import com.fjhdream.truckbilling.controller.mapper.UserWxMapper;
@@ -13,10 +14,7 @@ import com.fjhdream.truckbilling.service.wx.exception.RestWxException;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 /**
@@ -53,6 +51,17 @@ public class UserController {
         } catch (RestWxException e) {
             log.info("RestWxException is {}", e.getErrMsg());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Query wx login error.");
+        }
+    }
+
+    @GetMapping("/user/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    UserResponse userQuery(@PathVariable String id) {
+        var user = userRepository.findById(id);
+        if (user.isEmpty()) {
+            return new UserResponse();
+        } else {
+            return UserMapper.INSTANCE.userToUserResponse(user.get());
         }
     }
 }
