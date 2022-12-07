@@ -1,0 +1,29 @@
+package com.fjhdream.truckbilling.repository.mapper;
+
+import com.fjhdream.truckbilling.controller.entity.TeamBillingRequest;
+import com.fjhdream.truckbilling.controller.entity.TeamBillingResponse;
+import com.fjhdream.truckbilling.repository.entity.Billing;
+import com.fjhdream.truckbilling.repository.entity.Team;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.factory.Mappers;
+
+import java.util.List;
+import java.util.Set;
+
+@Mapper
+public interface BillingMapper {
+
+    BillingMapper INSTANCE = Mappers.getMapper(BillingMapper.class);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "name", source = "teamBillingRequest.name")
+    Billing teamBillingRequestToBilling(Team team, TeamBillingRequest teamBillingRequest);
+
+    @Mapping(target = "billingName", source = "name")
+    @Mapping(target = "billingId", source = "id")
+    TeamBillingResponse billingToTeamBillingResponse(Billing billing);
+
+
+    List<TeamBillingResponse> biilingSetToTeamBillingResponseList(Set<Billing> billingSet);
+}
