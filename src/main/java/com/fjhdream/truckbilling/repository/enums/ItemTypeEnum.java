@@ -1,6 +1,6 @@
 package com.fjhdream.truckbilling.repository.enums;
 
-public enum ItemEnum {
+public enum ItemTypeEnum {
     BASIC,
     CUSTOM,
     DEFAULT;

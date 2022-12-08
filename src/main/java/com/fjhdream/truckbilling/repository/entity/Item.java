@@ -1,8 +1,11 @@
 package com.fjhdream.truckbilling.repository.entity;
 
+import com.fjhdream.truckbilling.repository.enums.ItemTypeEnum;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.Type;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -21,6 +24,11 @@ public class Item {
     @Column(name = "name", nullable = false, length = 128)
     private String name;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    @Type(value = PostgreSQLEnumType.class)
+    private ItemTypeEnum type;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
@@ -29,6 +37,7 @@ public class Item {
     private String iconUrl;
     @OneToMany(mappedBy = "item")
     private Set<BillingItem> billingItems = new LinkedHashSet<>();
+
 
     public UUID getId() {
         return id;
@@ -70,10 +79,11 @@ public class Item {
         this.billingItems = billingItems;
     }
 
-/*
-    TODO [JPA Buddy] create field to map the 'type' column
-     Available actions: Define target Java type | Uncomment as is | Remove column mapping
-    @Column(name = "type", columnDefinition = "item_type not null")
-    private Object type;
-*/
+    public ItemTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(ItemTypeEnum type) {
+        this.type = type;
+    }
 }

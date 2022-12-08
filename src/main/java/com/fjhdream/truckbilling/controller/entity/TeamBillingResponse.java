@@ -15,4 +15,7 @@ public class TeamBillingResponse {
 
     @JsonProperty("billing_name")
     private String billingName;
+
+    @JsonProperty("billing_status")
+    private String billingStatus;
 }

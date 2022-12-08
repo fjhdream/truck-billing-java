@@ -1,8 +1,11 @@
 package com.fjhdream.truckbilling.repository.entity;
 
+import com.fjhdream.truckbilling.repository.enums.BillingStatusEnum;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.hibernate.annotations.Type;
 
 import java.time.Instant;
 import java.util.LinkedHashSet;
@@ -26,6 +29,12 @@ public class Billing {
     @JoinColumn(name = "team_id")
     private Team team;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    @Type(value = PostgreSQLEnumType.class)
+    private BillingStatusEnum status;
+
+
     @Column(name = "start_time")
     private Instant startTime;
 
@@ -34,6 +43,14 @@ public class Billing {
 
     @OneToMany(mappedBy = "billing")
     private Set<BillingItem> billingItems = new LinkedHashSet<>();
+
+    public BillingStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(BillingStatusEnum status) {
+        this.status = status;
+    }
 
     public UUID getId() {
         return id;
@@ -82,5 +99,6 @@ public class Billing {
     public void setBillingItems(Set<BillingItem> billingItems) {
         this.billingItems = billingItems;
     }
+
 
 }
