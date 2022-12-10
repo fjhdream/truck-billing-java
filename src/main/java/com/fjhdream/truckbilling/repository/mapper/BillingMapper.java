@@ -4,6 +4,7 @@ import com.fjhdream.truckbilling.controller.entity.TeamBillingRequest;
 import com.fjhdream.truckbilling.controller.entity.TeamBillingResponse;
 import com.fjhdream.truckbilling.repository.entity.Billing;
 import com.fjhdream.truckbilling.repository.entity.Team;
+import com.fjhdream.truckbilling.repository.entity.TeamCar;
 import com.fjhdream.truckbilling.repository.enums.BillingStatusEnum;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,7 +21,8 @@ public interface BillingMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "teamBillingRequest.name")
     @Mapping(target = "status", expression = "java(BillingStatusEnum.INITIALIZED)")
-    Billing teamBillingRequestToBilling(Team team, TeamBillingRequest teamBillingRequest);
+    @Mapping(target = "")
+    Billing teamBillingRequestToBilling(Team team, TeamCar teamCar, TeamBillingRequest teamBillingRequest);
 
     @Mapping(target = "billingName", source = "name")
     @Mapping(target = "billingId", source = "id")

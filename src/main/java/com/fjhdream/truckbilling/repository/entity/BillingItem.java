@@ -31,6 +31,17 @@ public class BillingItem {
     @Column(name = "\"time\"", nullable = false)
     private Instant time;
 
+    @Column(name = "remark", length = Integer.MAX_VALUE)
+    private String remark;
+
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
     public UUID getId() {
         return id;
     }

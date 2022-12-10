@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.annotations.Type;
 
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -43,6 +44,77 @@ public class Billing {
 
     @OneToMany(mappedBy = "billing")
     private Set<BillingItem> billingItems = new LinkedHashSet<>();
+
+    @Size(max = 128)
+    @Column(name = "commodity", length = 128)
+    private String commodity;
+
+    @Size(max = 128)
+    @Column(name = "start_location", length = 128)
+    private String startLocation;
+
+    @Size(max = 128)
+    @Column(name = "end_location", length = 128)
+    private String endLocation;
+
+    @Column(name = "start_money")
+    private BigDecimal startMoney;
+
+    @Column(name = "end_money")
+    private BigDecimal endMoney;
+
+    @NotNull
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "team_car_id", nullable = false)
+    private TeamCar teamCar;
+
+    public TeamCar getTeamCar() {
+        return teamCar;
+    }
+
+    public void setTeamCar(TeamCar teamCar) {
+        this.teamCar = teamCar;
+    }
+
+    public BigDecimal getEndMoney() {
+        return endMoney;
+    }
+
+    public void setEndMoney(BigDecimal endMoney) {
+        this.endMoney = endMoney;
+    }
+
+    public BigDecimal getStartMoney() {
+        return startMoney;
+    }
+
+    public void setStartMoney(BigDecimal startMoney) {
+        this.startMoney = startMoney;
+    }
+
+    public String getEndLocation() {
+        return endLocation;
+    }
+
+    public void setEndLocation(String endLocation) {
+        this.endLocation = endLocation;
+    }
+
+    public String getStartLocation() {
+        return startLocation;
+    }
+
+    public void setStartLocation(String startLocation) {
+        this.startLocation = startLocation;
+    }
+
+    public String getCommodity() {
+        return commodity;
+    }
+
+    public void setCommodity(String commodity) {
+        this.commodity = commodity;
+    }
 
     public BillingStatusEnum getStatus() {
         return status;

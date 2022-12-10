@@ -1,7 +1,10 @@
 package com.fjhdream.truckbilling.repository.entity;
 
+import com.fjhdream.truckbilling.repository.enums.UseStatusEnum;
+import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Type;
 
 import java.util.UUID;
 
@@ -22,6 +25,11 @@ public class TeamDriver {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    @Type(value = PostgreSQLEnumType.class)
+    private UseStatusEnum status;
 
     public UUID getId() {
         return id;
@@ -47,4 +55,11 @@ public class TeamDriver {
         this.team = team;
     }
 
+    public UseStatusEnum getStatus() {
+        return status;
+    }
+
+    public void setStatus(UseStatusEnum status) {
+        this.status = status;
+    }
 }

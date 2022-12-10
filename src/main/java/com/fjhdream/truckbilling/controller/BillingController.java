@@ -5,10 +5,12 @@ import com.fjhdream.truckbilling.controller.entity.TeamBillingResponse;
 import com.fjhdream.truckbilling.repository.BillingRepository;
 import com.fjhdream.truckbilling.repository.entity.Billing;
 import com.fjhdream.truckbilling.repository.entity.Team;
+import com.fjhdream.truckbilling.repository.entity.TeamCar;
 import com.fjhdream.truckbilling.repository.enums.BillingStatusEnum;
 import com.fjhdream.truckbilling.repository.mapper.BillingMapper;
 import com.fjhdream.truckbilling.service.billing.BillingService;
 import com.fjhdream.truckbilling.service.billing.TeamAndBilling;
+import com.fjhdream.truckbilling.service.billing.TeamAndTeamCar;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -42,9 +44,11 @@ public class BillingController {
 
     @PostMapping("/team/{team_id}/billing")
     @ResponseStatus(HttpStatus.CREATED)
-    void teamCreateBilling(@PathVariable("team_id") String teamId, @RequestBody TeamBillingRequest teamBillingRequest) {
-        Team team = billingService.authTeam(teamId);
-        Billing billing = BillingMapper.INSTANCE.teamBillingRequestToBilling(team, teamBillingRequest);
+    void teamCreateBilling(@PathVariable("team_id") String teamId, @Valid @RequestBody TeamBillingRequest teamBillingRequest) {
+        TeamAndTeamCar teamAndTeamCar = billingService.authTeamAndTeamCar(teamId, teamBillingRequest.getTeamCarId());
+        Team team = teamAndTeamCar.team();
+        TeamCar teamCar = teamAndTeamCar.teamCar();
+        Billing billing = BillingMapper.INSTANCE.teamBillingRequestToBilling(team, teamCar, teamBillingRequest);
         billingRepository.save(billing);
 
     }
