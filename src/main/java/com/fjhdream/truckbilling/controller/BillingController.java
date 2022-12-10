@@ -55,8 +55,7 @@ public class BillingController {
 
     @PutMapping("/team/{team_id}/billing/{billing_id}")
     @ResponseStatus(HttpStatus.OK)
-    void teamUpdateBilling(@PathVariable("team_id") String teamId, @PathVariable("billing_id") String billingId,
-                           @Valid @RequestBody TeamBillingRequest teamBillingRequest) {
+    void teamUpdateBilling(@PathVariable("team_id") String teamId, @PathVariable("billing_id") String billingId, @Valid @RequestBody TeamBillingRequest teamBillingRequest) {
         TeamAndBilling teamAndBilling = billingService.authTeamAndBilling(teamId, billingId);
         Team team = teamAndBilling.team();
         Billing billing = teamAndBilling.billing();
@@ -103,4 +102,6 @@ public class BillingController {
         billing.setStatus(BillingStatusEnum.CLOSED);
         billingRepository.save(billing);
     }
+
+
 }

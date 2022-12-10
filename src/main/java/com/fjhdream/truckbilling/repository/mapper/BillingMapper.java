@@ -21,7 +21,6 @@ public interface BillingMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "teamBillingRequest.name")
     @Mapping(target = "status", expression = "java(BillingStatusEnum.INITIALIZED)")
-    @Mapping(target = "")
     Billing teamBillingRequestToBilling(Team team, TeamCar teamCar, TeamBillingRequest teamBillingRequest);
 
     @Mapping(target = "billingName", source = "name")
