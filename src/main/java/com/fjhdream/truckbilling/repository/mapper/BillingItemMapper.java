@@ -1,6 +1,6 @@
 package com.fjhdream.truckbilling.repository.mapper;
 
-import com.fjhdream.truckbilling.controller.entity.TeamBillingIteamRequest;
+import com.fjhdream.truckbilling.controller.entity.TeamBillingItemRequest;
 import com.fjhdream.truckbilling.repository.entity.Billing;
 import com.fjhdream.truckbilling.repository.entity.BillingItem;
 import com.fjhdream.truckbilling.repository.entity.Item;
@@ -13,6 +13,7 @@ public interface BillingItemMapper {
 
     BillingItemMapper INSTANCE = Mappers.getMapper(BillingItemMapper.class);
 
+    @Mapping(target = "time", ignore = true)
     @Mapping(target = "id", ignore = true)
-    BillingItem requestToBillingItem(TeamBillingIteamRequest teamBillingIteamRequest, Billing billing, Item item);
+    BillingItem requestToBillingItem(TeamBillingItemRequest teamBillingItemRequest, Billing billing, Item item);
 }
