@@ -11,7 +11,6 @@ import java.util.Set;
 public class User {
     @Id
     @Size(max = 128)
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "id", nullable = false, length = 128)
     private String id;
 
