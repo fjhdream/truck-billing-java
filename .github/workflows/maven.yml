@@ -27,16 +27,6 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-        
-    # 如果你使用git crypt加密文件，那么你就得解密文件
-    - name: GitHub Action to unlock git-crypt secrets
-      uses: sliteteam/github-action-git-crypt-unlock@1.1.0
-      env:
-        GIT_CRYPT_KEY: $
-    
-    # 如果你使用git crypt加密文件，解密文件后需要将目录删除掉确保隐私
-    - name: Delete git crypt directory
-      run: sudo rm -rf .git/git-crypt
     
     - name: Build with Maven
       run: mvn -B package -Dmaven.test.skip=true --file pom.xml
@@ -50,5 +40,22 @@ jobs:
         source: "./target/truck-billing-0.0.1.jar"
         target: "/root/truck-java"
         
+    - name: ssh pipelines
+      uses: cross-the-world/ssh-pipeline@master
+      env:
+        WELCOME: "ssh pipeline"
+      with:
+        host: ${{ APP_SERVER }}
+        user: root
+        pass: ${{ secrets.DC_PASS }}
+        port: 22
+        connect_timeout: 10s
+        script: |
+          (rm -rf /home/github/test || true)
+          ls -la  
+          echo $WELCOME 
+          mkdir -p /home/github/test/test1 && 
+          mkdir -p /home/github/test/test2 &&
+
     
 
