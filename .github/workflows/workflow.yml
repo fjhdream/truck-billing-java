@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: Java CI/CD
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
     - name: Replace tokens
       uses: cschleiden/replace-tokens@v1.2
       with:
-        files: '["**/*.properties"]'
+        files: '["src/main/resources/application-prod.properties"]'
       env:
         DB_URL: ${{ secrets.DB_URL }}
         DB_USER: ${{ secrets.DB_USER }}
