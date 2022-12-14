@@ -27,7 +27,17 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    
+    - name: Replace tokens
+      uses: cschleiden/replace-tokens@v1.2
+      with:
+        files: '["**/*.properties"]'
+      env:
+        DB_URL: ${{ secrets.DB_URL }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        WX_APP_ID: ${{ secrets.WX_APP_ID }}
+        WX_APP_SECRET: ${{ secrets.WX_APP_SECRET }}
+      
     - name: Build with Maven
       run: mvn -B package -Dmaven.test.skip=true --file pom.xml
         
@@ -39,6 +49,7 @@ jobs:
         password: ${{ secrets.APP_SECRET }}
         source: "./target/truck-billing-0.0.1.jar"
         target: "/root/truck-java"
+        strip_components: 1
         
     - name: ssh pipelines
       uses: cross-the-world/ssh-pipeline@master
@@ -51,11 +62,9 @@ jobs:
         port: 22
         connect_timeout: 10s
         script: |
-          (rm -rf /home/github/test || true)
-          ls -la  
-          echo $WELCOME 
-          mkdir -p /home/github/test/test1 && 
-          mkdir -p /home/github/test/test2 &&
-
+          ps -ef | grep truck-billing-0.0.1.jar | grep -v grep | awk '{print $2}' | xargs kill -9
+          cd /root/truck-java
+          nohup java -jar -Dspring.profiles.active=prod truck-billing-0.0.1.jar > run.log &
+          
     
 
