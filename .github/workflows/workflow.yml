@@ -32,11 +32,12 @@ jobs:
       with:
         path: ./src/main/resources/application-prod.properties
         contents: |
+          
           spring.datasource.url=${{ secrets.DB_URL }}
           spring.datasource.username=${{ secrets.DB_USER }}
           spring.datasource.password=${{ secrets.DB_PASSWORD }}
           truck.app-id=${{ secrets.WX_APP_ID }}
-           truck.app-secret= ${{ secrets.WX_APP_SECRET }}
+          truck.app-secret= ${{ secrets.WX_APP_SECRET }}
         write-mode: append
       
     - name: Build with Maven
@@ -63,9 +64,9 @@ jobs:
         port: 22
         connect_timeout: 10s
         script: |
-          ps -ef | grep truck-billing-0.0.1.jar | grep -v grep | awk '{print $2}' | xargs kill -9
           cd /root/truck-java
-          nohup java -jar -Dspring.profiles.active=prod truck-billing-0.0.1.jar > run.log &
+          sh ./stop.sh
+          sh ./start.sh
           
     
 
