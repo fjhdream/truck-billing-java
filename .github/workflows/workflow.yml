@@ -33,17 +33,17 @@ jobs:
       with:
         path: './src/main/resources/application-prod.properties'
         property: |
-          'spring.datasource.url'
-          'spring.datasource.username'
-          'spring.datasource.password'
-          'truck.app-id'
-          'truck.app-secret'
+           spring.datasource.url
+           spring.datasource.username
+           spring.datasource.password
+           truck.app-id
+           truck.app-secret
         value: |
-          '${{ secrets.DB_URL }}'
-          '${{ secrets.DB_USER }}'
-          '${{ secrets.DB_PASSWORD }}'
-          '${{ secrets.WX_APP_ID }}'
-          '${{ secrets.WX_APP_SECRET }}'
+           ${{ secrets.DB_URL }}
+           ${{ secrets.DB_USER }}
+           ${{ secrets.DB_PASSWORD }}
+           ${{ secrets.WX_APP_ID }}
+           ${{ secrets.WX_APP_SECRET }}
       
     - name: Build with Maven
       run: mvn -B package -Dmaven.test.skip=true
@@ -54,7 +54,7 @@ jobs:
         host: ${{ secrets.APP_SERVER }}
         username: root
         password: ${{ secrets.APP_SECRET }}
-        source: "./target/truck-billing-0.0.1.jar"
+        source: "target/truck-billing-0.0.1.jar"
         target: "/root/truck-java"
         strip_components: 1
         
