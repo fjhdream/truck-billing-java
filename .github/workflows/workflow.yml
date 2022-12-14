@@ -27,16 +27,23 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Replace tokens
-      uses: cschleiden/replace-tokens@v1.2
+        
+    - name: Write value to Properties-file
+      uses: christian-draeger/write-properties@1.1.0
       with:
-        files: '["src/main/resources/application-prod.properties"]'
-      env:
-        DB_URL: ${{ secrets.DB_URL }}
-        DB_USER: ${{ secrets.DB_USER }}
-        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-        WX_APP_ID: ${{ secrets.WX_APP_ID }}
-        WX_APP_SECRET: ${{ secrets.WX_APP_SECRET }}
+        path: './src/main/resources/application-prod.properties'
+        property: |
+          'spring.datasource.url'
+          'spring.datasource.username'
+          'spring.datasource.password'
+          'truck.app-id'
+          'truck.app-secret'
+        value: |
+          '${{ secrets.DB_URL }}'
+          '${{ secrets.DB_USER }}'
+          '${{ secrets.DB_PASSWORD }}'
+          '${{ secrets.WX_APP_ID }}'
+          '${{ secrets.WX_APP_SECRET }}'
       
     - name: Build with Maven
       run: mvn -B package -Dmaven.test.skip=true
