@@ -20,53 +20,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
-        
-    - uses: DamianReeves/write-file-action@master
-      with:
-        path: ./src/main/resources/application-prod.properties
-        contents: |
-          
-          spring.datasource.url=${{ secrets.DB_URL }}
-          spring.datasource.username=${{ secrets.DB_USER }}
-          spring.datasource.password=${{ secrets.DB_PASSWORD }}
-          truck.app-id=${{ secrets.WX_APP_ID }}
-          truck.app-secret= ${{ secrets.WX_APP_SECRET }}
-        write-mode: append
-      
-    - name: Build with Maven
-      run: mvn -B package -Dmaven.test.skip=true
-        
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.APP_SERVER }}
-        username: root
-        password: ${{ secrets.APP_SECRET }}
-        source: "target/truck-billing-0.0.1.jar"
-        target: "/root/truck-java"
-        strip_components: 1
-        
-    - name: ssh pipelines
-      uses: cross-the-world/ssh-pipeline@master
-      env:
-        WELCOME: "ssh pipeline"
-      with:
-        host: ${{ secrets.APP_SERVER }}
-        user: root
-        pass: ${{ secrets.APP_SECRET }}
-        port: 22
-        connect_timeout: 10s
-        script: |
-          cd /root/truck-java
-          sh ./stop.sh
-          sh ./start.sh
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+
+      - uses: DamianReeves/write-file-action@master
+        with:
+          path: ./src/main/resources/application-prod.properties
+          contents: |
+            server.port=3001
+            springdoc.api-docs.path=/docs
+            springdoc.swagger-ui.path=/docs.html
+            spring.datasource.url=${{ secrets.DB_URL }}
+            spring.datasource.username=${{ secrets.DB_USER }}
+            spring.datasource.password=${{ secrets.DB_PASSWORD }}
+            truck.app-id=${{ secrets.WX_APP_ID }}
+            truck.app-secret= ${{ secrets.WX_APP_SECRET }}
+          write-mode: append
+
+      - name: Build with Maven
+        run: mvn -B package -Dmaven.test.skip=true
+
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.APP_SERVER }}
+          username: root
+          password: ${{ secrets.APP_SECRET }}
+          source: "target/truck-billing-0.0.1.jar"
+          target: "/root/truck-java"
+          strip_components: 1
+
+      - name: ssh pipelines
+        uses: cross-the-world/ssh-pipeline@master
+        env:
+          WELCOME: "ssh pipeline"
+        with:
+          host: ${{ secrets.APP_SERVER }}
+          user: root
+          pass: ${{ secrets.APP_SECRET }}
+          port: 22
+          connect_timeout: 10s
+          script: |
+            cd /root/truck-java
+            sh ./stop.sh
+            sh ./start.sh
           
     
 
