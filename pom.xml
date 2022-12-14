@@ -19,6 +19,7 @@
         <java.version>17</java.version>
         <testcontainers.version>1.17.6</testcontainers.version>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
         <dependency>
