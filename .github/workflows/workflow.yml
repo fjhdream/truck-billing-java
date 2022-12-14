@@ -39,7 +39,7 @@ jobs:
         WX_APP_SECRET: ${{ secrets.WX_APP_SECRET }}
       
     - name: Build with Maven
-      run: mvn -B package -Dmaven.test.skip=true --file pom.xml
+      run: mvn -B package -Dmaven.test.skip=true
         
     - name: copy file via ssh password
       uses: appleboy/scp-action@master
