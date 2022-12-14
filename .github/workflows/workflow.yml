@@ -28,22 +28,16 @@ jobs:
         distribution: 'temurin'
         cache: maven
         
-    - name: Write value to Properties-file
-      uses: christian-draeger/write-properties@1.1.0
+    - uses: DamianReeves/write-file-action@master
       with:
-        path: './src/main/resources/application-prod.properties'
-        property: |
-           spring.datasource.url
-           spring.datasource.username
-           spring.datasource.password
-           truck.app-id
-           truck.app-secret
-        value: |
-           ${{ secrets.DB_URL }}
-           ${{ secrets.DB_USER }}
-           ${{ secrets.DB_PASSWORD }}
-           ${{ secrets.WX_APP_ID }}
-           ${{ secrets.WX_APP_SECRET }}
+        path: ./src/main/resources/application-prod.properties
+        contents: |
+          spring.datasource.url=${{ secrets.DB_URL }}
+          spring.datasource.username=${{ secrets.DB_USER }}
+          spring.datasource.password=${{ secrets.DB_PASSWORD }}
+          truck.app-id=${{ secrets.WX_APP_ID }}
+           truck.app-secret= ${{ secrets.WX_APP_SECRET }}
+        write-mode: append
       
     - name: Build with Maven
       run: mvn -B package -Dmaven.test.skip=true
