@@ -33,8 +33,6 @@ jobs:
           path: ./src/main/resources/application-prod.properties
           contents: |
             server.port=3001
-            springdoc.api-docs.path=/docs
-            springdoc.swagger-ui.path=/docs.html
             spring.datasource.url=${{ secrets.DB_URL }}
             spring.datasource.username=${{ secrets.DB_USER }}
             spring.datasource.password=${{ secrets.DB_PASSWORD }}
