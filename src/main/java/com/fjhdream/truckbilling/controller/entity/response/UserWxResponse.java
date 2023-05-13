@@ -1,4 +1,4 @@
-package com.fjhdream.truckbilling.controller.entity;
+package com.fjhdream.truckbilling.controller.entity.response;
 
 import lombok.Data;
 

@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.controller;
 
-import com.fjhdream.truckbilling.controller.entity.RoleResponse;
-import com.fjhdream.truckbilling.controller.entity.UserRoleRequest;
+import com.fjhdream.truckbilling.controller.entity.request.UserRoleRequest;
+import com.fjhdream.truckbilling.controller.entity.response.RoleResponse;
 import com.fjhdream.truckbilling.repository.RoleRepository;
 import com.fjhdream.truckbilling.repository.entity.Role;
 import com.fjhdream.truckbilling.repository.entity.User;

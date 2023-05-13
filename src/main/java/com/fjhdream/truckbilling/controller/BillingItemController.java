@@ -1,6 +1,6 @@
 package com.fjhdream.truckbilling.controller;
 
-import com.fjhdream.truckbilling.controller.entity.TeamBillingItemRequest;
+import com.fjhdream.truckbilling.controller.entity.request.TeamBillingItemRequest;
 import com.fjhdream.truckbilling.repository.BillingItemRepository;
 import com.fjhdream.truckbilling.repository.entity.BillingItem;
 import com.fjhdream.truckbilling.repository.mapper.BillingItemMapper;

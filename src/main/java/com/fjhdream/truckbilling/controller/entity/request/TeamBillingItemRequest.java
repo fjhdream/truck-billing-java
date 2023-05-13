@@ -1,4 +1,4 @@
-package com.fjhdream.truckbilling.controller.entity;
+package com.fjhdream.truckbilling.controller.entity.request;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.annotation.Nullable;

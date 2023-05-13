@@ -1,9 +1,9 @@
 package com.fjhdream.truckbilling.controller;
 
-import com.fjhdream.truckbilling.controller.entity.UserRequest;
-import com.fjhdream.truckbilling.controller.entity.UserResponse;
-import com.fjhdream.truckbilling.controller.entity.UserWxRequest;
-import com.fjhdream.truckbilling.controller.entity.UserWxResponse;
+import com.fjhdream.truckbilling.controller.entity.request.UserRequest;
+import com.fjhdream.truckbilling.controller.entity.request.UserWxRequest;
+import com.fjhdream.truckbilling.controller.entity.response.UserResponse;
+import com.fjhdream.truckbilling.controller.entity.response.UserWxResponse;
 import com.fjhdream.truckbilling.controller.mapper.UserWxMapper;
 import com.fjhdream.truckbilling.repository.UserRepository;
 import com.fjhdream.truckbilling.repository.entity.User;

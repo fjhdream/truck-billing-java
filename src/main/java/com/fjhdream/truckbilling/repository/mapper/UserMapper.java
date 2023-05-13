@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.repository.mapper;
 
-import com.fjhdream.truckbilling.controller.entity.UserRequest;
-import com.fjhdream.truckbilling.controller.entity.UserResponse;
+import com.fjhdream.truckbilling.controller.entity.request.UserRequest;
+import com.fjhdream.truckbilling.controller.entity.response.UserResponse;
 import com.fjhdream.truckbilling.repository.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.controller;
 
-import com.fjhdream.truckbilling.controller.entity.TeamDriverRequest;
-import com.fjhdream.truckbilling.controller.entity.TeamDriverResponse;
+import com.fjhdream.truckbilling.controller.entity.request.TeamDriverRequest;
+import com.fjhdream.truckbilling.controller.entity.response.TeamDriverResponse;
 import com.fjhdream.truckbilling.repository.TeamDriverRepository;
 import com.fjhdream.truckbilling.repository.TeamRepository;
 import com.fjhdream.truckbilling.repository.UserRepository;

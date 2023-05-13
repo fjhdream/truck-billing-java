@@ -1,4 +1,4 @@
-package com.fjhdream.truckbilling.controller.entity;
+package com.fjhdream.truckbilling.controller.entity.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

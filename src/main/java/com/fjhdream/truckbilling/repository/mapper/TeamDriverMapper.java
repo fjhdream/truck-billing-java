@@ -1,6 +1,6 @@
 package com.fjhdream.truckbilling.repository.mapper;
 
-import com.fjhdream.truckbilling.controller.entity.TeamDriverResponse;
+import com.fjhdream.truckbilling.controller.entity.response.TeamDriverResponse;
 import com.fjhdream.truckbilling.repository.entity.Team;
 import com.fjhdream.truckbilling.repository.entity.TeamDriver;
 import com.fjhdream.truckbilling.repository.entity.User;

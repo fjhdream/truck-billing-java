@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.controller.mapper;
 
-import com.fjhdream.truckbilling.controller.entity.UserWxRequest;
-import com.fjhdream.truckbilling.controller.entity.UserWxResponse;
+import com.fjhdream.truckbilling.controller.entity.request.UserWxRequest;
+import com.fjhdream.truckbilling.controller.entity.response.UserWxResponse;
 import com.fjhdream.truckbilling.service.wx.entity.WxRequest;
 import com.fjhdream.truckbilling.service.wx.entity.WxResponse;
 import org.mapstruct.Mapper;

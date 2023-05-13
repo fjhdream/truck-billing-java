@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.controller;
 
-import com.fjhdream.truckbilling.controller.entity.UserTeamRequest;
-import com.fjhdream.truckbilling.controller.entity.UserTeamResponse;
+import com.fjhdream.truckbilling.controller.entity.request.UserTeamRequest;
+import com.fjhdream.truckbilling.controller.entity.response.UserTeamResponse;
 import com.fjhdream.truckbilling.repository.TeamRepository;
 import com.fjhdream.truckbilling.repository.UserRepository;
 import com.fjhdream.truckbilling.repository.entity.Team;

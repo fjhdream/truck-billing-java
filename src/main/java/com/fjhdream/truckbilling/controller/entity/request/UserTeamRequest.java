@@ -1,6 +1,5 @@
-package com.fjhdream.truckbilling.controller.entity;
+package com.fjhdream.truckbilling.controller.entity.request;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,9 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TeamDriverRequest {
+public class UserTeamRequest {
 
     @NotBlank
-    @JsonAlias("user_id")
-    private String userId;
+    private String name;
 }

@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.repository.mapper;
 
-import com.fjhdream.truckbilling.controller.entity.RoleResponse;
-import com.fjhdream.truckbilling.controller.entity.UserRoleRequest;
+import com.fjhdream.truckbilling.controller.entity.request.UserRoleRequest;
+import com.fjhdream.truckbilling.controller.entity.response.RoleResponse;
 import com.fjhdream.truckbilling.repository.entity.Role;
 import com.fjhdream.truckbilling.repository.entity.User;
 import org.mapstruct.Mapper;
@@ -21,7 +21,7 @@ public interface RoleMapper {
 
     List<RoleResponse> roleListToRoleResponseList(List<Role> role);
 
-    
+
     List<RoleResponse> roleSetToRoleResponseList(Set<Role> role);
 
     @Mapping(target = "id", ignore = true)

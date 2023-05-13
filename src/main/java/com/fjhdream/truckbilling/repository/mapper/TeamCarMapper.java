@@ -1,7 +1,7 @@
 package com.fjhdream.truckbilling.repository.mapper;
 
-import com.fjhdream.truckbilling.controller.entity.TeamCarRequest;
-import com.fjhdream.truckbilling.controller.entity.TeamCarResponse;
+import com.fjhdream.truckbilling.controller.entity.request.TeamCarRequest;
+import com.fjhdream.truckbilling.controller.entity.response.TeamCarResponse;
 import com.fjhdream.truckbilling.repository.entity.Team;
 import com.fjhdream.truckbilling.repository.entity.TeamCar;
 import com.fjhdream.truckbilling.repository.enums.UseStatusEnum;
