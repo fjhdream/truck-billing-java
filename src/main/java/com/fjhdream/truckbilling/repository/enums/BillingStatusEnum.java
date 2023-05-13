@@ -4,5 +4,5 @@ public enum BillingStatusEnum {
     INITIALIZED,
     STARTED,
     ENDED,
-    CLOSED;
+    CLOSED
 }
