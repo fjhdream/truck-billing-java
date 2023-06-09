@@ -1,11 +1,9 @@
 package com.fjhdream.truckbilling.repository.entity;
 
 import com.fjhdream.truckbilling.repository.enums.ItemTypeEnum;
-import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.hibernate.annotations.Type;
 
 import java.util.LinkedHashSet;
 import java.util.Set;

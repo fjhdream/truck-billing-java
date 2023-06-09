@@ -1,10 +1,8 @@
 package com.fjhdream.truckbilling.repository.entity;
 
 import com.fjhdream.truckbilling.repository.enums.UseStatusEnum;
-import com.vladmihalcea.hibernate.type.basic.PostgreSQLEnumType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.hibernate.annotations.Type;
 
 import java.util.UUID;
 
