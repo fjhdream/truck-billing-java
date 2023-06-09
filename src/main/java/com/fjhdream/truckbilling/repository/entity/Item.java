@@ -26,7 +26,6 @@ public class Item {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    @Type(value = PostgreSQLEnumType.class)
     private ItemTypeEnum type;
 
     @ManyToOne(fetch = FetchType.LAZY)

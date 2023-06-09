@@ -32,7 +32,6 @@ public class Billing {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    @Type(value = PostgreSQLEnumType.class)
     private BillingStatusEnum status;
 
 

@@ -29,7 +29,6 @@ public class TeamCar {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
-    @Type(value = PostgreSQLEnumType.class)
     private UseStatusEnum status;
 
     public UUID getId() {

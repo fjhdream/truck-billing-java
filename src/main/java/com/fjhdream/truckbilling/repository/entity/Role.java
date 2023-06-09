@@ -24,7 +24,6 @@ public class Role {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    @Type(value = PostgreSQLEnumType.class)
     private RoleType roleType;
 
     public RoleType getRoleType() {
