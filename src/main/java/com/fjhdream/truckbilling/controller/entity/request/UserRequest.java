@@ -2,9 +2,11 @@ package com.fjhdream.truckbilling.controller.entity.request;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 public class UserRequest {
 
     @NotBlank(message = "User ID can not be empty!")
